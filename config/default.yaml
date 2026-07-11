@@ -1,0 +1,68 @@
+# 5-6-8 Paper: Default Configuration (exp6 G13 optimal)
+# BOPTEST: bestest_hydronic, Typical scenario, 14 days, 15-min step
+
+seed: 123
+step_period: 900  # seconds
+steps_per_day: 96
+total_steps: 1344  # 14 * 96
+warmup_hours: 168
+scenario: "Typical"
+electricity_price: "highly_dynamic"
+
+# T_rule
+trule_global_offset: 0.3
+enable_price: true
+
+# TCN_T (T_set correction head)
+tcn_t:
+  lr: 0.003
+  ch0: 32
+  ch1: 64
+  input_dim: 23
+  seq_len: 24
+  train_interval: 4
+  min_buffer: 96
+  batch_size: 64
+  weight_decay: 0.00001
+  dropout: 0.05
+  dt_max: 0.8
+  dt_max_neg: -0.8
+
+# Beta schedule (time-only, no adaptive gate)
+beta:
+  warmup: 24
+  ramp: 96
+  max: 1.0
+
+# TCN_U (PID gain + feedforward)
+tcn_u:
+  lr: 0.0001
+  ch0: 16
+  ch1: 32
+  input_dim: 16
+  seq_len: 12
+  train_interval: 4
+  min_buffer: 96
+  batch_size: 64
+  rmax: 0.25
+  ff_scale: 0.03
+
+# Alpha_u schedule (feedforward gating)
+alpha_u:
+  warmup: 288
+  ramp: 288
+  max: 1.0
+
+# PID (Paper / Adaptive)
+pid:
+  kp: 0.40
+  ki: 0.0002
+  kd: 10.0
+  d_alpha: 0.2
+
+# RLS
+rls:
+  forgetting: 0.998
+
+# Safety rules
+safety_rules: false  # OFF in this series

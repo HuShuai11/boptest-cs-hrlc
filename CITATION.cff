@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the associated manuscript."
+title: "BOPTEST Cold-Start Hierarchical Residual Learning Control"
+type: software
+authors:
+  - family-names: "Ma"
+    given-names: "Le"
+  - family-names: "Hu"
+    given-names: "Shuai"
+  - family-names: "Zhao"
+    given-names: "Linhan"
+  - family-names: "Yao"
+    given-names: "Zhenjie"
+  - family-names: "Du"
+    given-names: "Guanfeng"
+  - family-names: "Jin"
+    given-names: "Xu"
+repository-code: "https://github.com/HuShuai11/boptest-cs-hrlc"
+license: MIT
+version: 1.0.0
